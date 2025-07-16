@@ -6,12 +6,8 @@ import (
 	"time"
 )
 
-const (
-	Rows      = 5
-	Cols      = 5
-	Mine      = -1
-	MineCount = 5
-)
+var Mine = -1
+
 
 func placeMines(rows, cols, mineCount int) [][]int {
 	board := make([][]int, rows)
@@ -32,7 +28,7 @@ func placeMines(rows, cols, mineCount int) [][]int {
 	return board
 }
 
-func setNumbers(board [][]int) {
+func setNumbers(Rows int, Cols int, board [][]int) {
 	dirs := [8][2]int{{-1,-1}, {-1,0}, {-1,1}, {0,-1}, {0,1}, {1,-1}, {1,0}, {1,1}}
 	for r := 0; r < Rows; r++ {
 		for c := 0; c < Cols; c++ {
@@ -66,8 +62,3 @@ func printBoard(board [][]int) {
 	}
 }
 
-func main() {
-	board := placeMines(Rows, Cols, MineCount)
-	setNumbers(board)
-	printBoard(board)
-}

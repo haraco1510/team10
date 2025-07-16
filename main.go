@@ -3,13 +3,23 @@ import (
 	"fmt"
 )
 func main(){
-	x := 2
-	y := 3
-	bom_x := 2
-	bom_y := 3
+	var (
+		Rows      = 5
+		Cols      = 5
+		MineCount = 5
+	)
 
-	result := input(x, y)
+	board := placeMines(Rows, Cols, MineCount)
+	setNumbers(Rows, Cols, board)
+	printBoard(board)
+
+	var num_x, num_y int
+	fmt.Scanf("%d %d", &num_x, &num_y)
+	var bom_x=2
+	var bom_y=3
+	
+	result := input(num_x, num_y)
 	fmt.Println(result)
-	explosion := Compare(bom_x, bom_y, x, y)
+	explosion := Compare(bom_x, bom_y, num_x, num_y)
 	fmt.Println(explosion)
 }
