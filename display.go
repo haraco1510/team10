@@ -55,8 +55,24 @@ func setNumbers(Rows int, Cols int, board [][]int) {
 }
 
 func printBoard(board [][]int, revealed [][]bool) {
-	for r := 0; r < len(board); r++ {
-		for c := 0; c < len(board[0]); c++ {
+	cols := len(board[0])
+	rows := len(board)
+
+	fmt.Print("   ")
+	for c := 0; c < cols; c++ {
+		fmt.Printf(" %d ", c)
+	}
+	fmt.Println()
+
+	fmt.Print("   ")
+	for c := 0; c < cols; c++ {
+		fmt.Print("---")
+	}
+	fmt.Println()
+
+	for r := 0; r < rows; r++ {
+		fmt.Printf(" %d|", r)
+		for c := 0; c < cols; c++ {
 			if revealed[r][c] {
 				if board[r][c] == Mine {
 					fmt.Print(" * ")
@@ -70,3 +86,5 @@ func printBoard(board [][]int, revealed [][]bool) {
 		fmt.Println()
 	}
 }
+
+
