@@ -3,10 +3,16 @@ package main
 import "fmt"
 
 func input(revealed [][]bool, rows, cols, x, y int) bool{
-	if (0 <= x && x <= rows-1) && (0 <= y && y <= cols-1) && (revealed[x][y] == false){
-		return true
+	if (0 <= x && x <= rows-1) && (0 <= y && y <= cols-1){
+		if(revealed[x][y] == false){
+			return true
+		}else{
+			fmt.Println("入力済みだよ(^^♪")
+			return false
+		}
+		
 	} else {
-		fmt.Println("Input is invalid.")
+		fmt.Println("範囲外だよ( ﾉД`)ｼｸｼｸ…")
 		return false
 	}
 }
