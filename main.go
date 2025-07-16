@@ -3,20 +3,24 @@ import (
 	"fmt"
 )
 func main(){
-	var (
-		Rows      = 10
-		Cols      = 10
-		MineCount = 5
-	)
-
-	board, revealed := placeMines(Rows, Cols, MineCount)
-	setNumbers(Rows, Cols, board)
-	printBoard(board, revealed)
-
+	var Level int
 	var num_x, num_y int
 	var result int
 	
 	fmt.Print("Start!\n")
+	for{
+		fmt.Print("難易度を選んでね(1~3で)：")
+		fmt.Scanf("%d", &Level)
+		if(1<=Level&&Level<=3){
+			break
+		}	
+	}
+	
+	Rows, Cols, MineCount := selectLevel(Level)
+	
+	board, revealed := placeMines(Rows, Cols, MineCount)
+	setNumbers(Rows, Cols, board)
+	printBoard(board, revealed)
 
 	for{
 		fmt.Print("座標を入力してね！：")
@@ -40,16 +44,21 @@ func main(){
 
 
 		explosion := Compare(board, num_x, num_y)
+
+		printBoard(board, revealed)
 		
 		mul:=1
 		num:=1
 		for i:=0 ;i<Rows;i++{
 			for j:=0;j<Cols;j++{
-				if (revealed[i][j]){
-					num=1
-				}else{
-					num=0
+				if(board[i][j] != -1){
+					if (revealed[i][j]){
+						num=1
+					}else{
+						num=0
+					}
 				}
+
 				mul = mul*num
 			}
 		}
@@ -58,7 +67,7 @@ func main(){
 			break
 		}
 		//fmt.Println(explosion)
-		printBoard(board, revealed)
+		
 		if(explosion == true){
 			result = -1
 			break

@@ -23,3 +23,13 @@ func Compare(board [][]int, x, y int) bool{
 	}
 	return false
 }
+
+func selectLevel(Level int) (int, int, int){
+	if(Level == 1){
+		return 3, 3, 2
+	}else if(Level == 2){
+		return 7, 7, 7
+	}else{
+		return 10, 10, 15
+	}
+}
