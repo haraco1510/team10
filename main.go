@@ -16,10 +16,10 @@ func main(){
 	var num_x, num_y int
 	var result int
 	
-	fmt.Print("Start!")
+	fmt.Print("Start!\n")
 
 	for{
-		fmt.Print("数字を入力してね！：")
+		fmt.Print("座標を入力してね！：")
 		fmt.Scanf("%d %d", &num_x, &num_y)
 		inputRange := input(num_x, num_y)
 		if(inputRange == false){
@@ -27,29 +27,37 @@ func main(){
 		}
 		revealed[num_x][num_y] = true
 		explosion := Compare(board, num_x, num_y)
-		if(explosion == true){
-			result = -1
-			break
-		}
-		mul=1
+		
+		mul:=1
+		num:=1
 		for i:=0 ;i<Rows;i++{
 			for j:=0;j<Cols;j++{
-				mul = mul*revealed[i][j]
+				if (revealed[i][j]){
+					num=1
+				}else{
+					num=0
+				}
+				mul = mul*num
 			}
 		}
-		if(mul){
+		if(mul==1){
 			result = 1
 			break
 		}
 		//fmt.Println(explosion)
 		printBoard(board, revealed)
+		if(explosion == true){
+			result = -1
+			break
+		}
 	}
 
 	if(result == -1){
-		fmt.Print("fail")
+		fmt.Print("ドカーン！")
 	}else{
-		fmt.Print("success")
+		fmt.Print("せいこう！")
 	}
+	fmt.Print("\n")
 	
 	
 }
