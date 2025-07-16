@@ -4,8 +4,8 @@ import (
 )
 func main(){
 	var (
-		Rows      = 5
-		Cols      = 5
+		Rows      = 10
+		Cols      = 10
 		MineCount = 5
 	)
 
@@ -21,11 +21,24 @@ func main(){
 	for{
 		fmt.Print("座標を入力してね！：")
 		fmt.Scanf("%d %d", &num_x, &num_y)
-		inputRange := input(num_x, num_y)
+		inputRange := input(revealed,Rows,Cols,num_x, num_y)
 		if(inputRange == false){
 			continue
 		}
-		revealed[num_x][num_y] = true
+
+		if(board[num_x][num_y] == 0){
+			for i := -1; i < 2; i++{
+				for j := -1; j < 2; j++{
+					if 0 <= num_x+i && num_x+i < Cols && 0 <= num_y+j && num_y+j < Rows {
+						revealed[num_x + i][num_y + j] = true
+					}
+				}
+			}
+		}else{
+			revealed[num_x][num_y] = true
+		}
+
+
 		explosion := Compare(board, num_x, num_y)
 		
 		mul:=1
