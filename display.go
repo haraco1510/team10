@@ -9,10 +9,13 @@ import (
 var Mine = -1
 
 
-func placeMines(rows, cols, mineCount int) [][]int {
+func placeMines(rows, cols, mineCount int) ([][]int, [][]bool) {
 	board := make([][]int, rows)
+	revealed := make([][]bool, rows)
+
 	for i := range board {
 		board[i] = make([]int, cols)
+		revealed[i] = make([]bool, cols) 
 	}
 
 	rand.Seed(time.Now().UnixNano())
@@ -25,8 +28,10 @@ func placeMines(rows, cols, mineCount int) [][]int {
 			placed++
 		}
 	}
-	return board
+
+	return board, revealed
 }
+
 
 func setNumbers(Rows int, Cols int, board [][]int) {
 	dirs := [8][2]int{{-1,-1}, {-1,0}, {-1,1}, {0,-1}, {0,1}, {1,-1}, {1,0}, {1,1}}
@@ -49,16 +54,19 @@ func setNumbers(Rows int, Cols int, board [][]int) {
 	}
 }
 
-func printBoard(board [][]int) {
-	for _, row := range board {
-		for _, cell := range row {
-			if cell == Mine {
-				fmt.Print(" * ")
+func printBoard(board [][]int, revealed [][]bool) {
+	for r := 0; r < len(board); r++ {
+		for c := 0; c < len(board[0]); c++ {
+			if revealed[r][c] {
+				if board[r][c] == Mine {
+					fmt.Print(" * ")
+				} else {
+					fmt.Printf(" %d ", board[r][c])
+				}
 			} else {
-				fmt.Printf(" %d ", cell)
+				fmt.Print(" ■ ")
 			}
 		}
 		fmt.Println()
 	}
 }
-

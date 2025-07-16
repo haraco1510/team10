@@ -9,9 +9,9 @@ func main(){
 		MineCount = 5
 	)
 
-	board := placeMines(Rows, Cols, MineCount)
+	board, revealed := placeMines(Rows, Cols, MineCount)
 	setNumbers(Rows, Cols, board)
-	printBoard(board)
+	printBoard(board, revealed)
 
 	var num_x, num_y int
 	fmt.Scanf("%d %d", &num_x, &num_y)
