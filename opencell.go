@@ -3,20 +3,21 @@ package main
 
 
 func opencell(board [][]int, revealed [][]bool, x, y, rows, cols int) {
-	// 範囲外チェック
-	if x < 0 || x >= rows || y < 0 || y >= cols {
+	// 範囲外チェック（y: 行, x: 列）
+	if y < 0 || y >= rows || x < 0 || x >= cols {
 		return
 	}
+
 	// すでに開いていたら終了
-	if revealed[x][y] {
+	if revealed[y][x] {
 		return
 	}
 
 	// 開ける
-	revealed[x][y] = true
+	revealed[y][x] = true
 
-	// 開けたマスが0なら周囲も再帰で開く
-	if board[x][y] == 0 {
+	// 0なら周囲を再帰的に開ける
+	if board[y][x] == 0 {
 		directions := [8][2]int{
 			{-1, -1}, {-1, 0}, {-1, 1},
 			{0, -1},           {0, 1},
@@ -28,3 +29,4 @@ func opencell(board [][]int, revealed [][]bool, x, y, rows, cols int) {
 		}
 	}
 }
+
