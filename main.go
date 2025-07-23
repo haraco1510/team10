@@ -1,4 +1,5 @@
 package main
+
 import (
 	"bufio"
 	"fmt"
@@ -6,6 +7,7 @@ import (
   "strconv"
   "strings"
 )
+
 func main(){
 	var Level int
 	var num_x, num_y int
@@ -84,13 +86,7 @@ func main(){
 			printBoard(board, revealed, flagged)
 		} else {
 			if(board[num_x][num_y] == 0){
-				for i := -1; i < 2; i++{
-					for j := -1; j < 2; j++{
-						if 0 <= num_x+i && num_x+i < Cols && 0 <= num_y+j && num_y+j < Rows {
-							revealed[num_x + i][num_y + j] = true
-						}
-					}
-				}
+				opencell(board, revealed, num_x, num_y, Rows, Cols)
 			}else{
 				revealed[num_x][num_y] = true
 			}
