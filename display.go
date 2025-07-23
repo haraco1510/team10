@@ -9,13 +9,15 @@ import (
 var Mine = -1
 
 
-func placeMines(rows, cols, mineCount int) ([][]int, [][]bool) {
+func placeMines(rows, cols, mineCount int) ([][]int, [][]bool, [][]bool) {
 	board := make([][]int, rows)
 	revealed := make([][]bool, rows)
+	flagged := make([][]bool, rows)
 
 	for i := range board {
 		board[i] = make([]int, cols)
 		revealed[i] = make([]bool, cols) 
+		flagged[i] = make([]bool, cols)
 	}
 
 	rand.Seed(time.Now().UnixNano())
@@ -29,7 +31,7 @@ func placeMines(rows, cols, mineCount int) ([][]int, [][]bool) {
 		}
 	}
 
-	return board, revealed
+	return board, revealed, flagged
 }
 
 
@@ -54,7 +56,7 @@ func setNumbers(Rows int, Cols int, board [][]int) {
 	}
 }
 
-func printBoard(board [][]int, revealed [][]bool) {
+func printBoard(board [][]int, revealed [][]bool, flagged [][]bool) {
 	cols := len(board[0])
 	rows := len(board)
 
@@ -79,6 +81,8 @@ func printBoard(board [][]int, revealed [][]bool) {
 				} else {
 					fmt.Printf(" %d ", board[r][c])
 				}
+			} else if flagged[r][c] {
+				fmt.Print(" x ")
 			} else {
 				fmt.Print(" ■ ")
 			}
