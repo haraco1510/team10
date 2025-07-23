@@ -18,7 +18,7 @@ func input(revealed [][]bool, rows, cols, x, y int) bool{
 }
 
 func Compare(board [][]int, x, y int) bool{
-	if board[y][x] == Mine2 {
+	if board[y][x] == Mine {
 		return true
 	}
 	return false

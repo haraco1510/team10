@@ -21,7 +21,7 @@ func main() {
 	rows, cols, MineCount := Level(level)
 	
 
-	board, revealed := placeMines(rows, cols, MineCount)
+	board, revealed,_ := placeMines(rows, cols, MineCount)
 	setNumbers(rows, cols, board)
 	// カーソルの位置
 	cursorX := 0
