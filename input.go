@@ -14,8 +14,20 @@ func input(x int, y int) bool{
 }
 
 func Compare(board [][]int, x, y int) bool{
-	if board[x][y] == Mine2 {
+	if board[y][x] == Mine2 {
 		return true
 	}
 	return false
 }
+
+func Level(level int)(int, int, int){
+	if(level == 1){
+		return 3,3,2
+	}else if(level == 2){
+		return 7,7,7
+	}else{
+		return 10,10,15
+	}
+
+}
+

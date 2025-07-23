@@ -54,18 +54,31 @@ func setNumbers(Rows int, Cols int, board [][]int) {
 	}
 }
 
-func printBoard(board [][]int, revealed [][]bool) {
+func printBoard(cursorX int, cursorY int, board [][]int, revealed [][]bool) {
 	for r := 0; r < len(board); r++ {
 		for c := 0; c < len(board[0]); c++ {
-			if revealed[r][c] {
-				if board[r][c] == Mine {
-					fmt.Print(" * ")
+			if c == cursorX && r == cursorY {
+				if revealed[r][c] {
+					if board[r][c] == Mine {
+						fmt.Print("[*]")
+					} else {
+						fmt.Printf("[%d]", board[r][c])
+					}
 				} else {
-					fmt.Printf(" %d ", board[r][c])
+					fmt.Print("[■]")
 				}
-			} else {
-				fmt.Print(" ■ ")
+			}else{
+				if revealed[r][c] {
+					if board[r][c] == Mine {
+						fmt.Print(" * ")
+					} else {
+						fmt.Printf(" %d ", board[r][c])
+					}
+				} else {
+					fmt.Print(" ■ ")
+				}
 			}
+			
 		}
 		fmt.Println()
 	}
