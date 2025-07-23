@@ -56,36 +56,33 @@ func setNumbers(Rows int, Cols int, board [][]int) {
 	}
 }
 
-func printBoard(board [][]int, revealed [][]bool, flagged [][]bool) {
-	cols := len(board[0])
-	rows := len(board)
 
-	fmt.Print("   ")
-	for c := 0; c < cols; c++ {
-		fmt.Printf(" %d ", c)
-	}
-	fmt.Println()
-
-	fmt.Print("   ")
-	for c := 0; c < cols; c++ {
-		fmt.Print("---")
-	}
-	fmt.Println()
-
-	for r := 0; r < rows; r++ {
-		fmt.Printf(" %d|", r)
-		for c := 0; c < cols; c++ {
-			if revealed[r][c] {
-				if board[r][c] == Mine {
-					fmt.Print(" * ")
+func printBoard(cursorX int, cursorY int, board [][]int, revealed [][]bool) {
+	for r := 0; r < len(board); r++ {
+		for c := 0; c < len(board[0]); c++ {
+			if c == cursorX && r == cursorY {
+				if revealed[r][c] {
+					if board[r][c] == Mine {
+						fmt.Print("[*]")
+					} else {
+						fmt.Printf("[%d]", board[r][c])
+					}
 				} else {
-					fmt.Printf(" %d ", board[r][c])
+					fmt.Print("[■]")
 				}
-			} else if flagged[r][c] {
-				fmt.Print(" x ")
-			} else {
-				fmt.Print(" ■ ")
+			}else{
+				if revealed[r][c] {
+					if board[r][c] == Mine {
+						fmt.Print(" * ")
+					} else {
+						fmt.Printf(" %d ", board[r][c])
+					}
+				} else {
+					fmt.Print(" ■ ")
+				}
+
 			}
+			
 		}
 		fmt.Println()
 	}

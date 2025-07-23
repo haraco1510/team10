@@ -18,13 +18,16 @@ func input(revealed [][]bool, rows, cols, x, y int) bool{
 }
 
 func Compare(board [][]int, x, y int) bool{
-	if board[x][y] == Mine {
+	if board[y][x] == Mine2 {
 		return true
 	}
 	return false
 }
 
-func selectLevel(Level int) (int, int, int){
+
+
+
+func Level(Level int) (int, int, int){
 	if(Level == 1){
 		return 3, 3, 2
 	}else if(Level == 2){
