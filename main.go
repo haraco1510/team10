@@ -91,7 +91,7 @@ func main() {
 			result:=0
 			for i:=0 ;i<rows;i++{
 				for j:=0;j<cols;j++{
-					if (revealed[i][j] && board[i][j]!=-1){
+					if ((revealed[i][j] && board[i][j]!=-1)||(!(revealed[i][j])&&board[i][j]==-1)){
 						num=1
 					}else{
 						num=0
@@ -113,6 +113,8 @@ func main() {
 				return 
 
 			}else if(result == 1){
+				clearScreen()
+				printBoard(-1, -1, board, revealed)
 				fmt.Print("せいこう！\n")
 				return 
 			}
